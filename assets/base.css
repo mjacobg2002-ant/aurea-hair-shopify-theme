@@ -420,6 +420,9 @@ p{margin:0;}
   .texture__grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-inline:calc(var(--gutter)*-1);padding-inline:var(--gutter);gap:14px;}
   .texture__grid::-webkit-scrollbar{display:none;}
   .texture-card{flex:0 0 78%;scroll-snap-align:center;}
+  .benefit{padding:16px 12px;}
+  .benefit__title{font-size:.7rem;letter-spacing:.16em;margin-bottom:4px;}
+  .benefit__text{font-size:.72rem;}
   .category-grid{grid-template-columns:1fr 1fr;}
   .gallery{grid-template-columns:repeat(2,1fr);}
   .testimonials__grid{grid-template-columns:1fr;gap:40px;}
