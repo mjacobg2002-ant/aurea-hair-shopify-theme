@@ -15,7 +15,9 @@
       {%- if s.video != blank -%}
         {{ s.video | video_tag: image_size: '1280x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'hero__video', preload: 'auto' }}
       {%- else -%}
-        <video class="hero__video" autoplay muted loop playsinline preload="auto"
+        <video class="hero__video" autoplay muted loop playsinline webkit-playsinline
+               preload="auto" tabindex="-1" disablepictureinpicture x-webkit-airplay="deny"
+               controlslist="nodownload noplaybackrate nofullscreen noremoteplayback"
                poster="{{ 'aurea-hero-poster.jpg' | asset_url }}" aria-label="Aurea Hair Co. campaign film">
           <source src="{{ 'aurea-hero.mp4' | asset_url }}" type="video/mp4">
           <img src="{{ 'aurea-hero-poster.jpg' | asset_url }}" alt="Aurea Hair Co. — luxury hair">
