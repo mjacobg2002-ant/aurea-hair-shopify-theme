@@ -19,6 +19,7 @@
   --font-sans:"Jost", "Helvetica Neue", Arial, sans-serif;
 
   --container:1400px;
+  --header-h:78px;
   --gutter:clamp(20px, 5vw, 64px);
   --radius:2px;
   --ease:cubic-bezier(.22,.61,.36,1);
@@ -122,8 +123,25 @@ p{margin:0;}
 /* =========================================================
    HEADER
    ========================================================= */
-.header{position:sticky;top:0;z-index:60;background:var(--ivory);border-bottom:1px solid transparent;transition:box-shadow .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease);}
+.header{position:sticky;top:0;z-index:60;background:var(--ivory);border-bottom:1px solid transparent;transition:box-shadow .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease);}
 .header.is-stuck{box-shadow:0 8px 30px -20px rgba(22,19,15,.4);border-bottom-color:var(--line);}
+
+/* Transparent luxury nav over the hero (homepage). Solid on scroll. */
+.template-index .hero{margin-top:calc(var(--header-h) * -1);}
+.header--transparent{background:transparent;border-bottom-color:transparent;}
+.header--transparent .header__link,
+.header--transparent .header__logo,
+.header--transparent .header__icon,
+.header--transparent .header__toggle{color:var(--ivory);}
+.header--transparent .header__logo span{color:var(--champagne);}
+.header--transparent .header__link::after{background:var(--ivory);}
+.header--transparent.is-stuck{background:var(--ivory);}
+.header--transparent.is-stuck .header__link,
+.header--transparent.is-stuck .header__logo,
+.header--transparent.is-stuck .header__icon,
+.header--transparent.is-stuck .header__toggle{color:var(--ink);}
+.header--transparent.is-stuck .header__logo span{color:var(--champagne-deep);}
+.header--transparent.is-stuck .header__link::after{background:var(--ink);}
 .header__bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;min-height:78px;}
 .header__nav{display:flex;align-items:center;gap:30px;}
 .header__logo{justify-self:center;font-family:var(--font-serif);font-size:clamp(1.35rem,2.4vw,1.9rem);letter-spacing:.02em;line-height:1;white-space:nowrap;}
@@ -369,6 +387,7 @@ p{margin:0;}
   .product-grid,.search-results-grid{grid-template-columns:repeat(3,1fr);}
 }
 @media (max-width:900px){
+  :root{--header-h:64px;}
   .header__nav{display:none;}
   .header__toggle{display:inline-flex;}
   .header__bar{grid-template-columns:auto 1fr auto;min-height:64px;}

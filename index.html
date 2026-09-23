@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="assets/base.css">
 <style>body{opacity:1}</style>
 </head>
-<body>
+<body class="template-index">
 
 <!-- NOTE: static visual preview of the Shopify homepage. Prices/products are illustrative;
      the real theme pulls them live from Shopify. -->
@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<header class="header" data-header>
+<header class="header header--transparent" data-header>
   <div class="container">
     <div class="header__bar">
       <nav class="header__nav">
@@ -50,7 +50,7 @@
       <source src="assets/aurea-hero.mp4" type="video/mp4">
       <img src="assets/aurea-hero-poster.jpg" alt="Aurea Hair Co.">
     </video>
-    <div class="hero__overlay" style="background:linear-gradient(100deg, rgba(22,19,15,.38) 0%, rgba(22,19,15,.15) 58%, rgba(22,19,15,0) 100%), linear-gradient(to top, rgba(22,19,15,.38) 0%, rgba(22,19,15,0) 42%);"></div>
+    <div class="hero__overlay" style="background:linear-gradient(100deg, rgba(22,19,15,.42) 0%, rgba(22,19,15,.16) 58%, rgba(22,19,15,0) 100%), linear-gradient(to top, rgba(22,19,15,.42) 0%, rgba(22,19,15,0) 42%), linear-gradient(to bottom, rgba(22,19,15,.34) 0%, rgba(22,19,15,0) 15%);"></div>
   </div>
   <div class="hero__content">
     <div class="container"><div class="hero__inner">
@@ -58,8 +58,8 @@
       <h1 class="hero__title">Luxury Hair.<br>Uncompromised.</h1>
       <p class="hero__text">Premium wigs, bundles and HD lace made to help you achieve an elevated, effortless finish.</p>
       <div class="hero__cta">
-        <a class="btn" href="#">Shop Best Sellers</a>
-        <a class="btn btn--ghost" href="#">Shop All Hair</a>
+        <a class="btn btn--light" href="#">Shop Best Sellers</a>
+        <a class="btn btn--ghost-light" href="#">Shop All Hair</a>
       </div>
     </div></div>
   </div>
@@ -77,9 +77,9 @@
 <section class="section container">
   <div class="texture__head"><div><p class="eyebrow">Find Your Texture</p><h2 class="h-lg">Shop by Texture</h2></div><a class="link-underline" href="#">View All</a></div>
   <div class="texture__grid">
-    <a class="texture-card" href="#"><div class="texture-card__media"><img src="assets/aurea-texture-curly-clean.png" alt="Curly"></div><div class="texture-card__label"><h3>Curly</h3><span>Shop Curly</span></div></a>
-    <a class="texture-card" href="#"><div class="texture-card__media"><img src="assets/aurea-texture-wavy-clean.png" alt="Wavy"></div><div class="texture-card__label"><h3>Wavy</h3><span>Shop Wavy</span></div></a>
-    <a class="texture-card" href="#"><div class="texture-card__media"><img src="assets/aurea-texture-straight-clean.png" alt="Straight"></div><div class="texture-card__label"><h3>Straight</h3><span>Shop Straight</span></div></a>
+    <a class="texture-card" href="#"><div class="texture-card__media"><img src="assets/aurea-texture-curly-clean.jpg" alt="Curly"></div><div class="texture-card__label"><h3>Curly</h3><span>Shop Curly</span></div></a>
+    <a class="texture-card" href="#"><div class="texture-card__media"><img src="assets/aurea-texture-wavy-clean.jpg" alt="Wavy"></div><div class="texture-card__label"><h3>Wavy</h3><span>Shop Wavy</span></div></a>
+    <a class="texture-card" href="#"><div class="texture-card__media"><img src="assets/aurea-texture-straight-clean.jpg" alt="Straight"></div><div class="texture-card__label"><h3>Straight</h3><span>Shop Straight</span></div></a>
   </div>
 </section>
 
@@ -89,7 +89,7 @@
   <div class="product-grid">
     <div class="product-card"><a class="product-card__media" href="#"><img src="assets/aurea-look-2.jpg" alt=""></a><h3 class="product-card__title">Straight HD 5x5 Lace Closure</h3><span class="product-card__price"><span>From $67.00</span></span></div>
     <div class="product-card"><a class="product-card__media" href="#"><img src="assets/aurea-look-4.png" alt=""></a><h3 class="product-card__title">Body Wave Bundle Deal</h3><span class="product-card__price"><span>From $95.00</span></span></div>
-    <div class="product-card"><a class="product-card__media" href="#"><img src="assets/aurea-texture-curly-clean.png" alt=""></a><h3 class="product-card__title">Burmese Curly HD Lace Wig</h3><span class="product-card__price"><span class="price--sale">$210.00</span> <span class="price--was">$260.00</span></span></div>
+    <div class="product-card"><a class="product-card__media" href="#"><img src="assets/aurea-texture-curly-clean.jpg" alt=""></a><h3 class="product-card__title">Burmese Curly HD Lace Wig</h3><span class="product-card__price"><span class="price--sale">$210.00</span> <span class="price--was">$260.00</span></span></div>
     <div class="product-card"><a class="product-card__media" href="#"><img src="assets/aurea-look-5.png" alt=""></a><h3 class="product-card__title">Straight Lace Closure</h3><span class="product-card__price"><span>From $72.00</span></span></div>
   </div>
   <div class="center" style="margin-top:48px;"><a class="btn btn--ghost" href="#">Shop the Edit</a></div>
@@ -110,7 +110,7 @@
 <section class="section container">
   <div class="collection__head"><p class="eyebrow">The Collection</p><h2 class="h-lg">Shop by Category</h2></div>
   <div class="category-grid">
-    <a class="category-card" href="#"><img src="assets/aurea-texture-straight-clean.png" alt="Wigs"><div class="category-card__overlay"><h3>Wigs</h3><span>HD Lace Units</span></div></a>
+    <a class="category-card" href="#"><img src="assets/aurea-texture-straight-clean.jpg" alt="Wigs"><div class="category-card__overlay"><h3>Wigs</h3><span>HD Lace Units</span></div></a>
     <a class="category-card" href="#"><img src="assets/aurea-look-4.png" alt="Bundles"><div class="category-card__overlay"><h3>Bundles</h3><span>Build Your Look</span></div></a>
     <a class="category-card" href="#"><img src="assets/aurea-look-2.jpg" alt="Closures"><div class="category-card__overlay"><h3>Closures</h3><span>5x5 · HD Lace</span></div></a>
     <a class="category-card" href="#"><img src="assets/aurea-look-5.png" alt="Frontals"><div class="category-card__overlay"><h3>Frontals</h3><span>Lace Fronts</span></div></a>
@@ -142,9 +142,9 @@
   <div class="collection__head"><p class="eyebrow">@shopaureahair</p><h2 class="h-lg">Shop the Look</h2><p class="lede" style="margin:14px auto 0;">Aurea, worn.</p></div>
   <div class="gallery">
     <div class="gallery__item gallery__item--tall"><img src="assets/aurea-editorial-model.png" alt=""></div>
-    <div class="gallery__item"><img src="assets/aurea-texture-curly-clean.png" alt=""></div>
+    <div class="gallery__item"><img src="assets/aurea-texture-curly-clean.jpg" alt=""></div>
     <div class="gallery__item"><img src="assets/aurea-look-4.png" alt=""></div>
-    <div class="gallery__item gallery__item--wide"><img src="assets/aurea-texture-wavy-clean.png" alt=""></div>
+    <div class="gallery__item gallery__item--wide"><img src="assets/aurea-texture-wavy-clean.jpg" alt=""></div>
     <div class="gallery__item"><img src="assets/aurea-look-5.png" alt=""></div>
     <div class="gallery__item"><img src="assets/aurea-look-2.jpg" alt=""></div>
   </div>

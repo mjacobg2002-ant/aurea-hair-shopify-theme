@@ -5,7 +5,7 @@
       "settings": {
         "use_video": true,
         "height": 90,
-        "overlay": 38,
+        "overlay": 42,
         "dark_text": false,
         "alignment": "left",
         "eyebrow": "Aurea Hair Co.",
@@ -36,9 +36,9 @@
         "link": "shopify://collections/all"
       },
       "blocks": {
-        "t1": { "type": "texture", "settings": { "collection": "curly-units-and-bundles", "title": "Curly", "caption": "Shop Curly", "fallback": "aurea-texture-curly-clean.png" } },
-        "t2": { "type": "texture", "settings": { "collection": "body-wave-units-and-wavy-units", "title": "Wavy", "caption": "Shop Wavy", "fallback": "aurea-texture-wavy-clean.png" } },
-        "t3": { "type": "texture", "settings": { "collection": "straight-units-and-bundles", "title": "Straight", "caption": "Shop Straight", "fallback": "aurea-texture-straight-clean.png" } }
+        "t1": { "type": "texture", "settings": { "collection": "curly-units-and-bundles", "title": "Curly", "caption": "Shop Curly", "fallback": "aurea-texture-curly-clean.jpg" } },
+        "t2": { "type": "texture", "settings": { "collection": "body-wave-units-and-wavy-units", "title": "Wavy", "caption": "Shop Wavy", "fallback": "aurea-texture-wavy-clean.jpg" } },
+        "t3": { "type": "texture", "settings": { "collection": "straight-units-and-bundles", "title": "Straight", "caption": "Shop Straight", "fallback": "aurea-texture-straight-clean.jpg" } }
       },
       "block_order": ["t1", "t2", "t3"]
     },
@@ -74,7 +74,7 @@
         "heading": "Shop by Category"
       },
       "blocks": {
-        "c1": { "type": "category", "settings": { "title": "Wigs", "caption": "HD Lace Units", "link": "shopify://collections/all", "fallback": "aurea-texture-straight-clean.png" } },
+        "c1": { "type": "category", "settings": { "title": "Wigs", "caption": "HD Lace Units", "link": "shopify://collections/all", "fallback": "aurea-texture-straight-clean.jpg" } },
         "c2": { "type": "category", "settings": { "title": "Bundles", "caption": "Build Your Look", "link": "shopify://collections/all", "fallback": "aurea-look-4.png" } },
         "c3": { "type": "category", "settings": { "title": "Closures", "caption": "5x5 · HD Lace", "link": "shopify://collections/all", "fallback": "aurea-look-2.jpg" } },
         "c4": { "type": "category", "settings": { "title": "Frontals", "caption": "Lace Fronts", "link": "shopify://collections/all", "fallback": "aurea-look-5.png" } }
@@ -98,9 +98,9 @@
       },
       "blocks": {
         "g1": { "type": "image", "settings": { "size": "tall", "fallback": "aurea-editorial-model.png" } },
-        "g2": { "type": "image", "settings": { "size": "square", "fallback": "aurea-texture-curly-clean.png" } },
+        "g2": { "type": "image", "settings": { "size": "square", "fallback": "aurea-texture-curly-clean.jpg" } },
         "g3": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-4.png" } },
-        "g4": { "type": "image", "settings": { "size": "wide", "fallback": "aurea-texture-wavy-clean.png" } },
+        "g4": { "type": "image", "settings": { "size": "wide", "fallback": "aurea-texture-wavy-clean.jpg" } },
         "g5": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-5.png" } },
         "g6": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-2.jpg" } }
       },
