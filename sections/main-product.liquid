@@ -1,0 +1,108 @@
+<section class="section container">
+  <p class="breadcrumb"><a href="{{ routes.root_url }}">Home</a> / {% if collection %}<a href="{{ collection.url }}">{{ collection.title }}</a> / {% endif %}{{ product.title }}</p>
+
+  <div class="feature-product" style="align-items:flex-start;">
+    <div class="feature-product__media reveal" style="aspect-ratio:auto;">
+      {%- assign fmedia = product.featured_media -%}
+      {%- if fmedia -%}
+        <img id="ProductMainImage" src="{{ fmedia | image_url: width: 1200 }}"
+             srcset="{{ fmedia | image_url: width: 700 }} 700w, {{ fmedia | image_url: width: 1200 }} 1200w"
+             sizes="(max-width:900px) 100vw, 55vw"
+             width="{{ fmedia.preview_image.width }}" height="{{ fmedia.preview_image.height }}"
+             alt="{{ fmedia.alt | escape | default: product.title | escape }}" fetchpriority="high">
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {%- endif -%}
+      {%- if product.media.size > 1 -%}
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;">
+          {%- for media in product.media limit: 8 -%}
+            <button type="button" style="border:0;padding:0;background:none;cursor:pointer;" onclick="document.getElementById('ProductMainImage').src='{{ media | image_url: width: 1200 }}'">
+              <img src="{{ media | image_url: width: 200 }}" alt="{{ media.alt | escape }}" width="200" height="250" style="aspect-ratio:4/5;object-fit:cover;" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="feature-product__body reveal">
+      {%- if product.vendor != blank -%}<p class="eyebrow">{{ product.vendor }}</p>{%- endif -%}
+      <h1 class="h-md">{{ product.title }}</h1>
+
+      <div class="feature-product__price" data-price>
+        {%- assign v = product.selected_or_first_available_variant -%}
+        {%- if v.compare_at_price > v.price -%}
+          <span class="price--sale">{{ v.price | money }}</span> <span class="price--was">{{ v.compare_at_price | money }}</span>
+        {%- else -%}
+          <span>{{ v.price | money }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- form 'product', product, id: 'ProductForm' -%}
+        {%- unless product.has_only_default_variant -%}
+          <div class="variant-options">
+            {%- for option in product.options_with_values -%}
+              <div class="variant-option">
+                <span class="variant-option__label">{{ option.name }}</span>
+                <div class="variant-values">
+                  {%- for value in option.values -%}
+                    {%- assign oid = 'opt-' | append: forloop.parentloop.index0 | append: '-' | append: forloop.index0 -%}
+                    <input type="radio" id="{{ oid }}" name="options[{{ option.name | escape }}]" value="{{ value | escape }}" data-pdp-option data-index="{{ forloop.parentloop.index0 }}"{% if option.selected_value == value %} checked{% endif %}>
+                    <label for="{{ oid }}">{{ value }}</label>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endunless -%}
+
+        <select name="id" id="ProductVariantId" class="visually-hidden" aria-hidden="true">
+          {%- for variant in product.variants -%}
+            <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title }}</option>
+          {%- endfor -%}
+        </select>
+
+        <div class="feature-product__actions" style="margin-top:26px;">
+          <button type="submit" name="add" class="btn btn--block"{% unless product.available %} disabled{% endunless %}>
+            {% if product.available %}Add to Cart{% else %}Sold Out{% endif %}
+          </button>
+        </div>
+      {%- endform -%}
+
+      {%- if product.description != blank -%}
+        <div class="rte" style="margin:34px 0 0;max-width:none;text-align:left;">{{ product.description }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function(){
+    var variants = {{ product.variants | json }};
+    var form = document.getElementById('ProductForm');
+    if(!form) return;
+    var idSel = document.getElementById('ProductVariantId');
+    var priceEl = form.closest('.feature-product__body').querySelector('[data-price]');
+    var atc = form.querySelector('[name="add"]');
+    var money = function(cents){ return '{{ shop.money_format }}'.replace(/\{\{.*?\}\}/, (cents/100).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})); };
+    form.querySelectorAll('[data-pdp-option]').forEach(function(i){
+      i.addEventListener('change', function(){
+        var chosen = Array.prototype.map.call(form.querySelectorAll('[data-pdp-option]:checked'), function(x){ return x.value; });
+        var match = variants.find(function(v){ return v.options.every(function(o,idx){ return o === chosen[idx]; }); });
+        if(!match) return;
+        if(idSel) idSel.value = match.id;
+        if(atc){ atc.disabled = !match.available; atc.textContent = match.available ? 'Add to Cart' : 'Sold Out'; }
+        if(priceEl){
+          if(match.compare_at_price && match.compare_at_price > match.price){
+            priceEl.innerHTML = '<span class="price--sale">'+money(match.price)+'</span> <span class="price--was">'+money(match.compare_at_price)+'</span>';
+          } else {
+            priceEl.innerHTML = '<span>'+money(match.price)+'</span>';
+          }
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{ "name": "Product", "settings": [] }
+{% endschema %}

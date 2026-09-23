@@ -1,0 +1,144 @@
+{
+  "sections": {
+    "hero": {
+      "type": "aurea-hero",
+      "settings": {
+        "use_video": true,
+        "height": 90,
+        "overlay": 38,
+        "dark_text": false,
+        "alignment": "left",
+        "eyebrow": "Aurea Hair Co.",
+        "heading": "Luxury Hair. Uncompromised.",
+        "text": "Premium wigs, bundles and HD lace made to help you achieve an elevated, effortless finish.",
+        "button1_label": "Shop Best Sellers",
+        "button1_link": "shopify://collections/frontpage",
+        "button2_label": "Shop All Hair",
+        "button2_link": "shopify://collections/all"
+      }
+    },
+    "benefits": {
+      "type": "aurea-benefits",
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "title": "100% Human Hair", "text": "Premium virgin textures" } },
+        "b2": { "type": "benefit", "settings": { "title": "HD Lace", "text": "A natural, melted hairline" } },
+        "b3": { "type": "benefit", "settings": { "title": "Curly · Wavy · Straight", "text": "A texture for every look" } },
+        "b4": { "type": "benefit", "settings": { "title": "Loved by Customers", "text": "Real five-star reviews" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"]
+    },
+    "textures": {
+      "type": "aurea-texture-collections",
+      "settings": {
+        "eyebrow": "Find Your Texture",
+        "heading": "Shop by Texture",
+        "link_label": "View All",
+        "link": "shopify://collections/all"
+      },
+      "blocks": {
+        "t1": { "type": "texture", "settings": { "collection": "curly-units-and-bundles", "title": "Curly", "caption": "Shop Curly", "fallback": "aurea-texture-curly-clean.png" } },
+        "t2": { "type": "texture", "settings": { "collection": "body-wave-units-and-wavy-units", "title": "Wavy", "caption": "Shop Wavy", "fallback": "aurea-texture-wavy-clean.png" } },
+        "t3": { "type": "texture", "settings": { "collection": "straight-units-and-bundles", "title": "Straight", "caption": "Shop Straight", "fallback": "aurea-texture-straight-clean.png" } }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "featured_collection": {
+      "type": "aurea-featured-collection",
+      "settings": {
+        "eyebrow": "Best Sellers",
+        "heading": "The Aurea Edit",
+        "subtext": "The pieces our customers reach for again and again.",
+        "collection": "frontpage",
+        "count": 4,
+        "quick_add": true,
+        "hover_image": true,
+        "button_label": "Shop the Edit"
+      }
+    },
+    "editorial_story": {
+      "type": "aurea-editorial-story",
+      "settings": {
+        "image_side": "left",
+        "dark": false,
+        "eyebrow": "The House of Aurea",
+        "heading": "Hair Worth Remembering",
+        "text": "<p>Every Aurea unit is chosen for its quality, its lace and the way it lets you feel completely yourself. Considered, confident and made to be worn.</p>",
+        "button_label": "Discover Aurea",
+        "button_link": "shopify://pages/about"
+      }
+    },
+    "category_grid": {
+      "type": "aurea-category-grid",
+      "settings": {
+        "eyebrow": "The Collection",
+        "heading": "Shop by Category"
+      },
+      "blocks": {
+        "c1": { "type": "category", "settings": { "title": "Wigs", "caption": "HD Lace Units", "link": "shopify://collections/all", "fallback": "aurea-texture-straight-clean.png" } },
+        "c2": { "type": "category", "settings": { "title": "Bundles", "caption": "Build Your Look", "link": "shopify://collections/all", "fallback": "aurea-look-4.png" } },
+        "c3": { "type": "category", "settings": { "title": "Closures", "caption": "5x5 · HD Lace", "link": "shopify://collections/all", "fallback": "aurea-look-2.jpg" } },
+        "c4": { "type": "category", "settings": { "title": "Frontals", "caption": "Lace Fronts", "link": "shopify://collections/all", "fallback": "aurea-look-5.png" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"]
+    },
+    "featured_product": {
+      "type": "aurea-featured-product",
+      "settings": {
+        "eyebrow": "In the Spotlight",
+        "product": "straight-hd-5x5-lace-closure",
+        "show_description": true
+      }
+    },
+    "gallery": {
+      "type": "aurea-editorial-gallery",
+      "settings": {
+        "eyebrow": "@shopaureahair",
+        "heading": "Shop the Look",
+        "subtext": "Aurea, worn."
+      },
+      "blocks": {
+        "g1": { "type": "image", "settings": { "size": "tall", "fallback": "aurea-editorial-model.png" } },
+        "g2": { "type": "image", "settings": { "size": "square", "fallback": "aurea-texture-curly-clean.png" } },
+        "g3": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-4.png" } },
+        "g4": { "type": "image", "settings": { "size": "wide", "fallback": "aurea-texture-wavy-clean.png" } },
+        "g5": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-5.png" } },
+        "g6": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-2.jpg" } }
+      },
+      "block_order": ["g1", "g2", "g3", "g4", "g5", "g6"]
+    },
+    "testimonials": {
+      "type": "aurea-testimonials",
+      "settings": {
+        "eyebrow": "Reviews",
+        "heading": "Loved by Aurea Customers"
+      },
+      "blocks": {
+        "r1": { "type": "review", "settings": { "rating": 5, "quote": "Hair is great quality and the lace melts effortlessly.", "name": "Renae W." } },
+        "r2": { "type": "review", "settings": { "rating": 5, "quote": "Best curly hair I ever purchased. I will be back for the straight bundles.", "name": "Nicole V." } },
+        "r3": { "type": "review", "settings": { "rating": 5, "quote": "Love love love my wig. Came right on time for my vacation.", "name": "Aaliyah S." } }
+      },
+      "block_order": ["r1", "r2", "r3"]
+    },
+    "newsletter": {
+      "type": "aurea-newsletter",
+      "settings": {
+        "eyebrow": "Aurea VIP",
+        "heading": "Join the Aurea List",
+        "text": "Be first to know about new drops and restocks.",
+        "note": "By subscribing you agree to receive Aurea emails. Unsubscribe anytime."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "benefits",
+    "textures",
+    "featured_collection",
+    "editorial_story",
+    "category_grid",
+    "featured_product",
+    "gallery",
+    "testimonials",
+    "newsletter"
+  ]
+}

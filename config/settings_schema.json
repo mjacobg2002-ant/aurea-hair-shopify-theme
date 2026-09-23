@@ -1,0 +1,24 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Aurea Hair Co.",
+    "theme_version": "1.0.0",
+    "theme_author": "Aurea Hair Co.",
+    "theme_documentation_url": "https://www.shopaureaco.com",
+    "theme_support_url": "https://www.shopaureaco.com"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_ink", "label": "Ink (near-black)", "default": "#16130f" },
+      { "type": "color", "id": "color_ivory", "label": "Ivory / cream", "default": "#f7f2ea" },
+      { "type": "color", "id": "color_accent", "label": "Champagne accent", "default": "#a9895f" }
+    ]
+  }
+]

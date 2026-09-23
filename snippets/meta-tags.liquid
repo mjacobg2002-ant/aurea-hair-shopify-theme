@@ -1,0 +1,15 @@
+{%- comment -%} Basic Open Graph / social meta {%- endcomment -%}
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title | default: shop.name }}">
+<meta property="og:type" content="{% if request.page_type == 'product' %}product{% elsif request.page_type == 'article' %}article{% else %}website{% endif %}">
+{%- if page_description -%}<meta property="og:description" content="{{ page_description | escape }}">{%- endif -%}
+{%- if request.page_type == 'product' and product -%}
+  {%- assign og_img = product.featured_media.preview_image -%}
+{%- elsif request.page_type == 'collection' and collection.featured_image -%}
+  {%- assign og_img = collection.featured_image -%}
+{%- endif -%}
+{%- if og_img -%}
+  <meta property="og:image" content="https:{{ og_img | image_url: width: 1200 }}">
+  <meta name="twitter:card" content="summary_large_image">
+{%- endif -%}

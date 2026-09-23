@@ -1,0 +1,60 @@
+<div class="page-hero container">
+  <p class="eyebrow">Your Bag</p>
+  <h1 class="display">Cart</h1>
+</div>
+
+<section class="section container" style="padding-top:0;">
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" novalidate>
+      <table class="cart-table">
+        <thead><tr><th colspan="2">Product</th><th>Quantity</th><th style="text-align:right;">Total</th></tr></thead>
+        <tbody>
+          {%- for item in cart.items -%}
+            <tr class="cart-item">
+              <td class="cart-item__media">
+                <a href="{{ item.url }}">
+                  {%- if item.image -%}<img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" width="96" height="120">{%- endif -%}
+                </a>
+              </td>
+              <td>
+                <div class="cart-item__title"><a href="{{ item.url }}">{{ item.product.title }}</a></div>
+                {%- unless item.variant.title contains 'Default' -%}<div class="cart-item__variant">{{ item.variant.title }}</div>{%- endunless -%}
+                <div class="cart-item__variant">{{ item.final_price | money }}</div>
+                <a href="{{ item.url_to_remove }}" class="link-underline" style="font-size:.66rem;margin-top:8px;">Remove</a>
+              </td>
+              <td>
+                <div class="qty">
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" aria-label="Decrease">&minus;</a>
+                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Quantity">
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" aria-label="Increase">+</a>
+                </div>
+              </td>
+              <td style="text-align:right;">{{ item.final_line_price | money }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+
+      <div class="cart-foot">
+        <div class="cart-summary">
+          <div class="cart-summary__row cart-summary__total"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
+          <p class="newsletter__note" style="color:var(--ink-soft);margin:14px 0 20px;">Taxes and shipping calculated at checkout.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button type="submit" name="update" class="btn btn--ghost">Update</button>
+            <button type="submit" name="checkout" class="btn" style="flex:1;">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  {%- else -%}
+    <div class="empty-state">
+      <h2 class="h-md">Your bag is empty</h2>
+      <p>Discover the Aurea edit.</p>
+      <a class="btn" href="{{ routes.all_products_collection_url }}">Shop All Hair</a>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

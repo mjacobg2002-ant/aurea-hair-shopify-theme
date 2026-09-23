@@ -1,0 +1,73 @@
+<header class="header" data-header>
+  <div class="container">
+    <div class="header__bar">
+
+      {%- comment -%} Left: desktop nav / mobile hamburger {%- endcomment -%}
+      <nav class="header__nav" aria-label="Primary">
+        {%- for link in section.settings.menu.links -%}
+          <a class="header__link" href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {%- endfor -%}
+      </nav>
+      <button class="header__toggle" data-open-menu aria-label="Open menu">{% render 'icon', name: 'menu' %}</button>
+
+      {%- comment -%} Center: logo {%- endcomment -%}
+      <a href="{{ routes.root_url }}" class="header__logo">
+        {%- if section.settings.logo != blank -%}
+          <img src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ shop.name | escape }}" width="200" height="42">
+        {%- else -%}
+          Aurea<span>.</span>
+        {%- endif -%}
+      </a>
+
+      {%- comment -%} Right: actions {%- endcomment -%}
+      <div class="header__actions">
+        <button class="header__icon" data-open-search aria-label="Search">{% render 'icon', name: 'search' %}</button>
+        <a class="header__icon" href="{{ routes.account_url }}" aria-label="Account">{% render 'icon', name: 'account' %}</a>
+        <a class="header__icon" href="{{ routes.cart_url }}" aria-label="Cart">
+          {% render 'icon', name: 'cart' %}
+          <span class="cart-count" data-cart-count{% if cart.item_count == 0 %} style="display:none"{% endif %}>{{ cart.item_count }}</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Search drawer {%- endcomment -%}
+<div class="search-drawer" data-search-drawer role="dialog" aria-modal="true" aria-label="Search">
+  <button class="search-drawer__close" data-close aria-label="Close search">Close</button>
+  <div class="search-drawer__inner">
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <label class="visually-hidden" for="SearchInput">Search</label>
+      <input type="search" id="SearchInput" name="q" placeholder="Search hair, wigs, bundles…" autocomplete="off">
+    </form>
+  </div>
+</div>
+
+{%- comment -%} Mobile menu {%- endcomment -%}
+<div class="mobile-menu" data-mobile-menu role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mobile-menu__top">
+    <span class="header__logo">Aurea<span>.</span></span>
+    <button class="mobile-menu__close" data-close aria-label="Close menu">{% render 'icon', name: 'close' %}</button>
+  </div>
+  <nav aria-label="Mobile">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+  <div class="mobile-menu__foot">
+    <a href="{{ routes.account_url }}">Account</a>
+    <a href="{{ routes.search_url }}">Search</a>
+    <a href="{{ routes.cart_url }}">Cart ({{ cart.item_count }})</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo image (optional)", "info": "Leave empty to use the Aurea wordmark." },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

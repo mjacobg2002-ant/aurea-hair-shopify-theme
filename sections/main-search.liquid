@@ -1,0 +1,33 @@
+<div class="page-hero container">
+  <p class="eyebrow">Search</p>
+  <h1 class="display">Search</h1>
+</div>
+
+<section class="section container" style="padding-top:0;">
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-form-lg">
+    <label class="visually-hidden" for="SearchPage">Search</label>
+    <input type="search" id="SearchPage" name="q" value="{{ search.terms | escape }}" placeholder="Search hair, wigs, bundles…">
+    <button type="submit">Search</button>
+  </form>
+
+  {%- if search.performed -%}
+    {%- if search.results.size > 0 -%}
+      <p class="center" style="color:var(--ink-soft);margin-bottom:34px;">{{ search.results_count }} results for “{{ search.terms }}”</p>
+      <div class="search-results-grid">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}
+            {% render 'product-card', product: item, show_quick_add: true, show_hover: true %}
+          {%- else -%}
+            <a href="{{ item.url }}" class="product-card"><h3 class="product-card__title">{{ item.title }}</h3></a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="empty-state"><h2 class="h-md">No results</h2><p>Try another search.</p></div>
+    {%- endif -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

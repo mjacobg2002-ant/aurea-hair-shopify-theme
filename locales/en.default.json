@@ -1,0 +1,23 @@
+{
+  "accessibility": {
+    "skip_to_content": "Skip to content"
+  },
+  "general": {
+    "search": {
+      "search": "Search",
+      "placeholder": "Search hair, wigs, bundles…"
+    },
+    "cart": {
+      "title": "Cart"
+    }
+  },
+  "products": {
+    "price": {
+      "from": "From"
+    },
+    "quick_add": "Quick Add",
+    "choose_options": "Choose Options",
+    "badge_sale": "Sale",
+    "badge_sold_out": "Sold Out"
+  }
+}

@@ -1,0 +1,21 @@
+{%- comment -%}
+  Renders a price block. Params:
+  - product (or variant) : object with price / compare_at_price
+  Uses Shopify native money formatting.
+{%- endcomment -%}
+{%- liquid
+  assign target = variant | default: product
+  assign price = target.price
+  assign compare = target.compare_at_price
+  if product and product.price_varies and variant == nil
+    assign show_from = true
+  endif
+-%}
+<span class="product-card__price">
+  {%- if compare > price -%}
+    <span class="price--sale">{% if show_from %}{{ 'products.price.from' | t | default: 'From' }} {% endif %}{{ price | money }}</span>
+    <span class="price--was">{{ compare | money }}</span>
+  {%- else -%}
+    <span>{% if show_from %}{{ 'products.price.from' | t | default: 'From' }} {% endif %}{{ price | money }}</span>
+  {%- endif -%}
+</span>

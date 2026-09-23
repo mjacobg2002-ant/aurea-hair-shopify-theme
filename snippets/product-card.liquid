@@ -1,0 +1,59 @@
+{%- comment -%}
+  Luxury product card.
+  Params:
+   - product (required)
+   - show_quick_add (bool)
+   - show_hover (bool)
+   - sizes (string, optional)
+{%- endcomment -%}
+{%- liquid
+  assign primary = product.featured_media
+  assign secondary = product.media[1]
+  assign img_sizes = sizes | default: '(max-width:760px) 50vw, 25vw'
+-%}
+<div class="product-card reveal">
+  <a class="product-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+    {%- if product.compare_at_price > product.price -%}
+      <span class="product-card__badge">{{ 'products.badge_sale' | t | default: 'Sale' }}</span>
+    {%- elsif product.available == false -%}
+      <span class="product-card__badge">{{ 'products.badge_sold_out' | t | default: 'Sold Out' }}</span>
+    {%- endif -%}
+
+    {%- if primary -%}
+      <img class="is-primary"
+           src="{{ primary | image_url: width: 700 }}"
+           srcset="{{ primary | image_url: width: 400 }} 400w, {{ primary | image_url: width: 700 }} 700w, {{ primary | image_url: width: 1000 }} 1000w"
+           sizes="{{ img_sizes }}"
+           width="{{ primary.preview_image.width }}" height="{{ primary.preview_image.height }}"
+           alt="{{ product.featured_media.alt | escape | default: product.title | escape }}"
+           loading="lazy">
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'product-card__placeholder' }}
+    {%- endif -%}
+
+    {%- if show_hover and secondary -%}
+      <img class="is-hover"
+           src="{{ secondary | image_url: width: 700 }}"
+           srcset="{{ secondary | image_url: width: 400 }} 400w, {{ secondary | image_url: width: 700 }} 700w"
+           sizes="{{ img_sizes }}"
+           alt="" loading="lazy" aria-hidden="true">
+    {%- endif -%}
+
+    {%- if show_quick_add and product.available -%}
+      <div class="product-card__quick">
+        {%- if product.variants.size == 1 -%}
+          <button type="button" class="quick-add" data-quick-add="{{ product.selected_or_first_available_variant.id }}">
+            {{ 'products.quick_add' | t | default: 'Quick Add' }}
+          </button>
+        {%- else -%}
+          <a class="quick-add" href="{{ product.url }}" style="display:block;text-align:center;text-decoration:none;">
+            {{ 'products.choose_options' | t | default: 'Choose Options' }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </a>
+
+  <a href="{{ product.url }}"><h3 class="product-card__title">{{ product.title }}</h3></a>
+  {% render 'price', product: product %}
+</div>

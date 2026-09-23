@@ -1,0 +1,95 @@
+{%- liquid
+  assign s = section.settings
+  assign align_class = ''
+  if s.alignment == 'center'
+    assign align_class = 'hero--align-center'
+  endif
+  if s.dark_text
+    assign align_class = align_class | append: ' hero--dark-text'
+  endif
+-%}
+<section class="hero {{ align_class }}" style="--hero-h:{{ s.height }}vh;">
+  <div class="hero__media" style="height:{{ s.height }}vh;min-height:460px;">
+    {%- if s.use_video -%}
+      {%- comment -%} Background campaign video (muted, autoplay, loop) {%- endcomment -%}
+      {%- if s.video != blank -%}
+        {{ s.video | video_tag: image_size: '1280x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'hero__video', preload: 'auto' }}
+      {%- else -%}
+        <video class="hero__video" autoplay muted loop playsinline preload="auto"
+               poster="{{ 'aurea-hero-poster.jpg' | asset_url }}" aria-label="Aurea Hair Co. campaign film">
+          <source src="{{ 'aurea-hero.mp4' | asset_url }}" type="video/mp4">
+          <img src="{{ 'aurea-hero-poster.jpg' | asset_url }}" alt="Aurea Hair Co. — luxury hair">
+        </video>
+      {%- endif -%}
+    {%- else -%}
+      {%- if s.image_desktop != blank -%}
+        <img class="hero__img--desktop"
+             src="{{ s.image_desktop | image_url: width: 2000 }}"
+             srcset="{{ s.image_desktop | image_url: width: 1200 }} 1200w, {{ s.image_desktop | image_url: width: 1800 }} 1800w, {{ s.image_desktop | image_url: width: 2400 }} 2400w"
+             sizes="100vw" width="{{ s.image_desktop.width }}" height="{{ s.image_desktop.height }}"
+             alt="{{ s.image_desktop.alt | escape | default: 'Aurea Hair Co.' }}" fetchpriority="high">
+      {%- else -%}
+        <img class="hero__img--desktop" src="{{ 'aurea-hero-poster.jpg' | asset_url }}" alt="Aurea Hair Co. — luxury hair" fetchpriority="high">
+      {%- endif -%}
+      {%- if s.image_mobile != blank -%}
+        <img class="hero__img--mobile"
+             src="{{ s.image_mobile | image_url: width: 900 }}"
+             srcset="{{ s.image_mobile | image_url: width: 600 }} 600w, {{ s.image_mobile | image_url: width: 900 }} 900w, {{ s.image_mobile | image_url: width: 1200 }} 1200w"
+             sizes="100vw" width="{{ s.image_mobile.width }}" height="{{ s.image_mobile.height }}"
+             alt="{{ s.image_mobile.alt | escape | default: 'Aurea Hair Co.' }}">
+      {%- elsif s.image_desktop != blank -%}
+        <img class="hero__img--mobile" src="{{ s.image_desktop | image_url: width: 1000 }}" alt="{{ s.image_desktop.alt | escape | default: 'Aurea Hair Co.' }}">
+      {%- else -%}
+        <img class="hero__img--mobile" src="{{ 'aurea-hero-poster.jpg' | asset_url }}" alt="Aurea Hair Co. — luxury hair">
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- assign a = s.overlay | divided_by: 100.0 -%}
+    {%- assign a2 = s.overlay | divided_by: 250.0 -%}
+    <div class="hero__overlay" style="background:linear-gradient(100deg, rgba(22,19,15,{{ a }}) 0%, rgba(22,19,15,{{ a2 }}) 58%, rgba(22,19,15,0) 100%), linear-gradient(to top, rgba(22,19,15,{{ a }}) 0%, rgba(22,19,15,0) 42%);"></div>
+  </div>
+
+  <div class="hero__content">
+    <div class="container">
+      <div class="hero__inner">
+        {%- if s.eyebrow != blank -%}<p class="eyebrow reveal">{{ s.eyebrow }}</p>{%- endif -%}
+        {%- if s.heading != blank -%}<h1 class="hero__title reveal" data-delay="1">{{ s.heading }}</h1>{%- endif -%}
+        {%- if s.text != blank -%}<p class="hero__text reveal" data-delay="2">{{ s.text }}</p>{%- endif -%}
+        <div class="hero__cta reveal" data-delay="3">
+          {%- if s.button1_label != blank -%}
+            <a class="btn {% unless s.dark_text %}btn--light{% endunless %}" href="{{ s.button1_link | default: routes.all_products_collection_url }}">{{ s.button1_label }}</a>
+          {%- endif -%}
+          {%- if s.button2_label != blank -%}
+            <a class="btn {% if s.dark_text %}btn--ghost{% else %}btn--ghost-light{% endif %}" href="{{ s.button2_link | default: routes.all_products_collection_url }}">{{ s.button2_label }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Aurea Hero",
+  "settings": [
+    { "type": "header", "content": "Media" },
+    { "type": "checkbox", "id": "use_video", "label": "Use background video", "default": true, "info": "Plays the bundled Aurea campaign film (muted, looped). Turn off to use images." },
+    { "type": "video", "id": "video", "label": "Background video (optional)", "info": "Overrides the bundled film. Use a short, muted-friendly clip." },
+    { "type": "image_picker", "id": "image_desktop", "label": "Desktop image (video off)" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Mobile image (video off)", "info": "A portrait crop reads best on phones." },
+    { "type": "range", "id": "height", "label": "Height (vh)", "min": 60, "max": 100, "step": 5, "unit": "vh", "default": 90 },
+    { "type": "range", "id": "overlay", "label": "Overlay darkness", "min": 0, "max": 90, "step": 5, "unit": "%", "default": 45 },
+    { "type": "header", "content": "Content" },
+    { "type": "checkbox", "id": "dark_text", "label": "Use dark text (light images)", "default": false },
+    { "type": "select", "id": "alignment", "label": "Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Aurea Hair Co." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Luxury Hair. Uncompromised." },
+    { "type": "textarea", "id": "text", "label": "Supporting text", "default": "Premium wigs, bundles and HD lace made to help you achieve an elevated, effortless finish." },
+    { "type": "text", "id": "button1_label", "label": "Button 1 label", "default": "Shop Best Sellers" },
+    { "type": "url", "id": "button1_link", "label": "Button 1 link" },
+    { "type": "text", "id": "button2_label", "label": "Button 2 label", "default": "Shop All Hair" },
+    { "type": "url", "id": "button2_link", "label": "Button 2 link" }
+  ],
+  "presets": [ { "name": "Aurea Hero" } ]
+}
+{% endschema %}

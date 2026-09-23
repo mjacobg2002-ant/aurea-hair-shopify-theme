@@ -1,0 +1,45 @@
+{%- liquid
+  assign s = section.settings
+  assign reverse = ''
+  if s.image_side == 'right'
+    assign reverse = 'editorial--reverse'
+  endif
+-%}
+<section class="editorial {{ reverse }}">
+  <div class="editorial__media reveal">
+    {%- if s.image != blank -%}
+      <img src="{{ s.image | image_url: width: 1400 }}"
+           srcset="{{ s.image | image_url: width: 800 }} 800w, {{ s.image | image_url: width: 1400 }} 1400w"
+           sizes="(max-width:900px) 100vw, 50vw"
+           width="{{ s.image.width }}" height="{{ s.image.height }}"
+           alt="{{ s.image.alt | escape | default: 'Aurea Hair Co.' }}" loading="lazy">
+    {%- else -%}
+      <img src="{{ 'aurea-editorial-model.png' | asset_url }}" alt="Aurea Hair Co. model" loading="lazy">
+    {%- endif -%}
+  </div>
+  <div class="editorial__body reveal {% if s.dark %}is-dark{% endif %}">
+    {%- if s.eyebrow != blank -%}<p class="eyebrow">{{ s.eyebrow }}</p>{%- endif -%}
+    <h2 class="h-lg">{{ s.heading }}</h2>
+    {%- if s.text != blank -%}<div class="lede" style="margin:22px 0 28px;">{{ s.text }}</div>{%- endif -%}
+    {%- if s.button_label != blank -%}
+      <div><a class="btn {% if s.dark %}btn--light{% else %}btn--ghost{% endif %}" href="{{ s.button_link | default: '/pages/about' }}">{{ s.button_label }}</a></div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Aurea Editorial Story",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "image_side", "label": "Image side", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "checkbox", "id": "dark", "label": "Dark text panel", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The House of Aurea" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Hair Worth Remembering" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Every Aurea unit is chosen for its quality, its lace and the way it lets you feel completely yourself. Considered, confident and made to be worn.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Discover Aurea" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [ { "name": "Aurea Editorial Story" } ]
+}
+{% endschema %}

@@ -1,0 +1,38 @@
+<section class="benefits">
+  <div class="benefits__grid" data-count="{{ section.blocks.size }}">
+    {%- for block in section.blocks -%}
+      <div class="benefit reveal" {{ block.shopify_attributes }}>
+        <div class="benefit__title">{{ block.settings.title }}</div>
+        <div class="benefit__text">{{ block.settings.text }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Aurea Benefit Strip",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "100% Human Hair" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Premium virgin textures" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aurea Benefit Strip",
+      "blocks": [
+        { "type": "benefit", "settings": { "title": "100% Human Hair", "text": "Premium virgin textures" } },
+        { "type": "benefit", "settings": { "title": "HD Lace", "text": "A natural, melted hairline" } },
+        { "type": "benefit", "settings": { "title": "Curly · Wavy · Straight", "text": "A texture for every look" } },
+        { "type": "benefit", "settings": { "title": "Loved by Customers", "text": "Real five-star reviews" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
