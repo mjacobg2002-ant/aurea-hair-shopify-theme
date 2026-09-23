@@ -49,8 +49,16 @@ templates/  index.json (homepage) + product/collection/cart/search/page/404 JSON
 - Responsive (tested 375 / 390 / 430 / 1440 / 1920), `prefers-reduced-motion` respected,
   lazy-loaded below the fold, Shopify image CDN sizing.
 
+## Static demo (Vercel / any static host)
+`index.html` at the repo root is a **self-contained static version of the homepage**
+(same design, real assets, hero video) for presenting the demo without a Shopify store.
+Vercel serves it automatically at `/` — no build step, framework preset **Other**.
+
+> Vercel/Netlify cannot run the Shopify theme itself (it's Liquid, rendered by Shopify).
+> `index.html` is a visual demo only; the importable theme is everything else in this repo.
+
 ## Local preview
-`preview.html` is a **static visual preview only** (not part of the Shopify runtime).
+`preview.html` (identical to `index.html`) is a **static visual preview only** (not part of the Shopify runtime).
 Open it via a local server to eyeball the layout:
 ```
 python3 -m http.server 8791   # then open http://localhost:8791/preview.html
