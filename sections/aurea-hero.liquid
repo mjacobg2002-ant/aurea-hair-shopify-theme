@@ -9,7 +9,8 @@
   endif
 -%}
 <section class="hero {{ align_class }}" style="--hero-h:{{ s.height }}vh;">
-  <div class="hero__media" style="height:{{ s.height }}vh;min-height:460px;">
+  {%- if s.use_video and s.video == blank -%}{%- assign hero_bg = 'aurea-hero-poster.jpg' | asset_url -%}{%- endif -%}
+  <div class="hero__media" style="height:{{ s.height }}vh;min-height:460px;{% if hero_bg %}background-image:url('{{ hero_bg }}');{% endif %}">
     {%- if s.use_video -%}
       {%- comment -%} Background campaign video (muted, autoplay, loop) {%- endcomment -%}
       {%- if s.video != blank -%}

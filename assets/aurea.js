@@ -10,6 +10,10 @@
     v.defaultMuted = true;
     v.setAttribute('muted', '');
     v.removeAttribute('controls');
+    // reveal the video only once it is actually playing — if the browser blocks
+    // muted autoplay (iOS Low Power Mode, data saver), it stays hidden and the
+    // poster background shows instead, so no native play button is ever visible.
+    v.addEventListener('playing', function () { v.classList.add('is-playing'); });
     var tryPlay = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
     tryPlay();
     v.addEventListener('loadeddata', tryPlay);
