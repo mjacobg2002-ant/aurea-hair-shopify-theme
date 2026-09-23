@@ -3,6 +3,20 @@
   'use strict';
   var routes = window.AureaRoutes || {};
 
+  /* ---- hero background video: force muted autoplay, never show controls ---- */
+  document.querySelectorAll('.hero__video').forEach(function (v) {
+    v.controls = false;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute('muted', '');
+    v.removeAttribute('controls');
+    var tryPlay = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+    tryPlay();
+    v.addEventListener('loadeddata', tryPlay);
+    v.addEventListener('canplay', tryPlay);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) tryPlay(); });
+  });
+
   /* ---- sticky header ---- */
   var header = document.querySelector('[data-header]');
   if (header) {
