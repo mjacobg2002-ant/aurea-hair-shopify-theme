@@ -14,7 +14,7 @@
            width="{{ s.image.width }}" height="{{ s.image.height }}"
            alt="{{ s.image.alt | escape | default: 'Aurea Hair Co.' }}" loading="lazy">
     {%- else -%}
-      <img src="{{ 'aurea-editorial-model.png' | asset_url }}" alt="Aurea Hair Co. model" loading="lazy">
+      <img src="{{ 'aurea-editorial-model.jpg' | asset_url }}" alt="Aurea Hair Co. model" loading="lazy">
     {%- endif -%}
   </div>
   <div class="editorial__body reveal {% if s.dark %}is-dark{% endif %}">

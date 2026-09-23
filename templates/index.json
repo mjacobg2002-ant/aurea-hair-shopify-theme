@@ -75,9 +75,9 @@
       },
       "blocks": {
         "c1": { "type": "category", "settings": { "title": "Wigs", "caption": "HD Lace Units", "link": "shopify://collections/all", "fallback": "aurea-texture-straight-clean.jpg" } },
-        "c2": { "type": "category", "settings": { "title": "Bundles", "caption": "Build Your Look", "link": "shopify://collections/all", "fallback": "aurea-look-4.png" } },
-        "c3": { "type": "category", "settings": { "title": "Closures", "caption": "5x5 · HD Lace", "link": "shopify://collections/all", "fallback": "aurea-look-2.jpg" } },
-        "c4": { "type": "category", "settings": { "title": "Frontals", "caption": "Lace Fronts", "link": "shopify://collections/all", "fallback": "aurea-look-5.png" } }
+        "c2": { "type": "category", "settings": { "title": "Bundles", "caption": "Build Your Look", "link": "shopify://collections/all", "fallback": "aurea-look-4.jpg", "contain": true } },
+        "c3": { "type": "category", "settings": { "title": "Closures", "caption": "5x5 · HD Lace", "link": "shopify://collections/all", "fallback": "aurea-look-2.jpg", "contain": true } },
+        "c4": { "type": "category", "settings": { "title": "Frontals", "caption": "Lace Fronts", "link": "shopify://collections/all", "fallback": "aurea-look-5.jpg", "contain": true } }
       },
       "block_order": ["c1", "c2", "c3", "c4"]
     },
@@ -97,12 +97,12 @@
         "subtext": "Aurea, worn."
       },
       "blocks": {
-        "g1": { "type": "image", "settings": { "size": "tall", "fallback": "aurea-editorial-model.png" } },
+        "g1": { "type": "image", "settings": { "size": "tall", "fallback": "aurea-editorial-model.jpg" } },
         "g2": { "type": "image", "settings": { "size": "square", "fallback": "aurea-texture-curly-clean.jpg" } },
-        "g3": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-4.png" } },
+        "g3": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-4.jpg", "contain": true } },
         "g4": { "type": "image", "settings": { "size": "wide", "fallback": "aurea-texture-wavy-clean.jpg" } },
-        "g5": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-5.png" } },
-        "g6": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-2.jpg" } }
+        "g5": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-5.jpg", "contain": true } },
+        "g6": { "type": "image", "settings": { "size": "square", "fallback": "aurea-look-2.jpg", "contain": true } }
       },
       "block_order": ["g1", "g2", "g3", "g4", "g5", "g6"]
     },

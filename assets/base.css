@@ -267,7 +267,7 @@ p{margin:0;}
    CATEGORY GRID
    ========================================================= */
 .category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.6vw,20px);}
-.category-card{position:relative;display:block;overflow:hidden;aspect-ratio:16/10;background:var(--cream);}
+.category-card{position:relative;display:block;overflow:hidden;aspect-ratio:4/5;background:var(--cream);}
 .category-card img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease);}
 .category-card:hover img{transform:scale(1.06);}
 .category-card__overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(22,19,15,.5),rgba(22,19,15,.05));display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(22px,3vw,40px);color:var(--ivory);}
@@ -299,6 +299,11 @@ p{margin:0;}
 .gallery__item--tall{grid-row:span 2;aspect-ratio:1/2;}
 .gallery__item--wide{grid-column:span 2;aspect-ratio:2/1;}
 .gallery__item img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease);}
+/* packshot tiles: show full product on matching cream, no cropping */
+.gallery__item.pack{background:var(--cream);}
+.gallery__item.pack img{object-fit:contain;}
+.category-card.pack{background:var(--cream);}
+.category-card.pack img{object-fit:contain;}
 .gallery__item:hover img{transform:scale(1.05);}
 .gallery__item .category-card__overlay{opacity:0;transition:opacity .4s var(--ease);}
 .gallery__item:hover .category-card__overlay{opacity:1;}

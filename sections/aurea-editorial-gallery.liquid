@@ -16,6 +16,9 @@
           assign size_class = 'gallery__item--wide'
         endif
         assign url = block.settings.link
+        if block.settings.contain
+          assign size_class = size_class | append: ' pack'
+        endif
       -%}
       <{% if url != blank %}a href="{{ url }}"{% else %}div{% endif %} class="gallery__item {{ size_class }} reveal" {{ block.shopify_attributes }}>
         {%- if img != blank -%}
@@ -55,7 +58,8 @@
         { "type": "select", "id": "size", "label": "Size", "options": [ { "value": "square", "label": "Square" }, { "value": "tall", "label": "Tall" }, { "value": "wide", "label": "Wide" } ], "default": "square" },
         { "type": "text", "id": "caption", "label": "Caption (optional)" },
         { "type": "url", "id": "link", "label": "Link (optional)" },
-        { "type": "text", "id": "fallback", "label": "Bundled fallback image", "info": "Theme asset filename used until you pick an image." }
+        { "type": "text", "id": "fallback", "label": "Bundled fallback image", "info": "Theme asset filename used until you pick an image." },
+        { "type": "checkbox", "id": "contain", "label": "Fit whole image (packshot)", "default": false, "info": "Use for product flatlays so nothing is cropped." }
       ]
     }
   ],
